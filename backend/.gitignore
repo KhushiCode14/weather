@@ -1,0 +1,100 @@
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Runtime files
+*.pid
+*.seed
+*.pid.lock
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build directories
+dist/
+build/
+.out/
+.next/
+server/
+
+# Test output
+coverage/
+.nyc_output/
+jest-html-reporters-*.html
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*.log
+*.tsbuildinfo
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE-specific files
+.idea/
+.vscode/
+*.code-workspace
+*.sublime-project
+*.sublime-workspace
+
+# Package manager files
+package-lock.json
+yarn.lock
+.pnpm-debug.log
+.pnpm-store/
+
+# Miscellaneous
+.vagrant/
+*.orig
+*.rej
+*.patch
+*.map
+
+# Optional npm cache directory
+.npm/
+
+# TypeScript
+*.tsbuildinfo
+
+# Binaries
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Git specific files
+.git/
+.gitmodules
+
+# Docker and Containers
+.dockerignore
+Dockerfile
+docker-compose.yml
+
+# Linting
+.eslintcache
+.prettiercache
+.stylelintcache
+
+# Logs and debug files
+*.log
+error.log
+debug.log
