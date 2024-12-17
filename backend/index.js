@@ -1,8 +1,11 @@
 import express from "express";
 import app from "./src/app.js";
+import ConnectDB from "./src/config/db.js";
+import config from "./src/config/config.js";
 const createServer = () => {
   try {
-    const PORT = process.env.PORT || 5000;
+    ConnectDB();
+    const PORT = config.PORT || 5000;
     app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);
     });
