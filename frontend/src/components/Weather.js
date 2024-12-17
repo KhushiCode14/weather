@@ -9,7 +9,7 @@ const Weather = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [location, setLocation] = useState("Patna");
   //   let API_KEY = process.env.API_KEY;
-  let API_KEY = "6b77f837eac454bfa623711170bb9acc";
+  let API_KEY = "1af46b13d204138cea1b35c92ea1db04";
   const fetchWeatherData = async () => {
     if (!location) return; // Prevent API call if location is empty
     setLoading(true); // Start loading
