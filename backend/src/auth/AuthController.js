@@ -4,20 +4,37 @@ import bcrypt from "bcryptjs";
 
 import jwt from "jsonwebtoken";
 const signupController = async (req, res) => {
-  const { name, email, password } = req.body;
+  const { username, email, password } = req.body;
 
-  if (!name || !email || !password) {
+  if (!username || !email || !password) {
     return res.status(400).json({ message: "All fields are required" });
   }
-  const existUser = await User.findOne({ email });
-  if (existUser) {
-    return res.status(400).json({ message: "Email already exists" });
+  const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+  if (!emailRegex.test(email)) {
+    return res.status(400).json({ message: "Invalid email format" });
   }
-  const hashedPassword = await bcrypt.hash(password, 10);
+  // const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/; // At least 8 characters, at least one letter and one number
+  // if (!passwordRegex.test(password)) {
+  //   return res.status(400).json({
+  //     message:
+  //       "Password must be at least 8 characters long and include both letters and numbers.",
+  //   });
+  // }
+  try {
+    const existUser = await User.findOne({ email });
+    if (existUser) {
+      return res.status(400).json({ message: "Email already exists" });
+    }
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-  const user = new User({ name, email, password: hashedPassword });
-  await user.save();
-  res.status(201).json({ message: "User created successfully" });
+    const user = new User({ username, email, password: hashedPassword });
+    await user.save();
+    console.log(user);
+    res.status(201).json({ message: "User created successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
+  }
 };
 
 const loginController = async (req, res) => {
@@ -33,7 +50,7 @@ const loginController = async (req, res) => {
   const token = jwt.sign({ id: user._id }, config.jwt_secret, {
     expiresIn: "7d",
   });
-  res.status(200).json({ token });
+  res.status(200).json({ token, user });
 };
 
 export { signupController, loginController };
